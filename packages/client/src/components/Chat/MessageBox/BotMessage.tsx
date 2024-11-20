@@ -39,7 +39,8 @@ const BotMessage: React.FC<BotMessageProps> = ({ message }) => {
   return (
     <Row className="h-auto">
       <Col span={2}>
-        <Avatar size="large" icon={<RobotOutlined />} />
+        {/* <Avatar size="large" icon={<RobotOutlined />} /> */}
+        <Avatar size="large" src="https://img.alicdn.com/imgextra/i2/O1CN01Qta2HJ20Hu4u7BbWM_!!6000000006825-2-tps-1024-1024.png" />
       </Col>
       <Col span={18}>
         <div className="bg-gray-300 mx-2">{renderMessage()}</div>

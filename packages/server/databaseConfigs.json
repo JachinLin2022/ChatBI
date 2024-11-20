@@ -1,0 +1,29 @@
+[
+  {
+    "databaseType": "mysql",
+    "databaseUri": "mysql://localhost:3306/mydatabase",
+    "username": "root",
+    "password": "password123",
+    "databaseName": "mydatabase",
+    "key": "1732094390910",
+    "isConnected": true
+  },
+  {
+    "databaseType": "postgresql",
+    "databaseUri": "postgresql://localhost:5432/mydb",
+    "username": "postgres",
+    "password": "securepassword",
+    "databaseName": "mydb",
+    "key": "1732094390911",
+    "isConnected": false
+  },
+  {
+    "databaseType": "neo4j",
+    "databaseUri": "bolt://localhost:7687",
+    "username": "neo4j",
+    "password": "neo4jpassword",
+    "databaseName": "neo4jdb",
+    "key": "1732094390912",
+    "isConnected": true
+  }
+]

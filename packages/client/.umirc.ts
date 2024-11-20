@@ -20,15 +20,14 @@ export default defineConfig({
       component: './Home',
     },
     {
-      name: 'Query',
-      path: '/query',
-      component: './Query',
-    },
-
-    {
-      name: 'DataSource',
+      name: '数据库配置',
       path: '/data-source',
       component: './DataSource',
+    },
+    {
+      name: '查询生成',
+      path: '/query',
+      component: './Query',
     },
   ],
   npmClient: 'pnpm',

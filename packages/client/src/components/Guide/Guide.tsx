@@ -12,8 +12,8 @@ const Guide: React.FC<Props> = (props) => {
   return (
     <Layout>
       <Row>
-        <Typography.Title level={3} className={styles.title}>
-          欢迎使用 <strong>{name}</strong> ！
+        <Typography.Title level={1} className={styles.title}>
+          <strong>{name}</strong>
         </Typography.Title>
       </Row>
     </Layout>

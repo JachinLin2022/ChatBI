@@ -13,7 +13,7 @@ const DatabasePage: React.FC = () => {
   const messages = useChatDbStore((state) => state.messages);
   const prompt = useChatDbStore((state) => state.prompt);
   const prompts = ['Top10 product', 'Product price top10'];
-
+  console.log(messages);
   const viewOptions = [
     { label: 'AVA', value: 'ava' },
     { label: 'VEGA', value: 'vega' },
@@ -22,14 +22,14 @@ const DatabasePage: React.FC = () => {
   return (
     <PageContainer
       header={{
-        title: 'Query',
+        title: '查询生成',
       }}
       className="py-10"
     >
       <Space direction={'horizontal'} className="mb-2">
         {/* chat type select */}
         <Space className="mr-10">
-          <span>Chat Type: </span>
+          <span>查询模式 </span>
           <Select
             className="min-w-30"
             value={chatStore.chatType}
@@ -49,7 +49,7 @@ const DatabasePage: React.FC = () => {
             chatStore.setAutoVisualize(e.target.checked);
           }}
         >
-          Auto Visualize
+          自动可视化
         </Checkbox>
 
         <Radio.Group
@@ -60,6 +60,16 @@ const DatabasePage: React.FC = () => {
           }}
           value={chatStore.autoVizType}
         />
+
+        {/* enable multi-round chat */}
+        <Checkbox
+          checked={chatStore.multiRoundChat}
+          onChange={(e) => {
+            chatStore.setMultiRoundChat(e.target.checked);
+          }}
+        >
+          多轮对话
+        </Checkbox>
       </Space>
 
       <PresetPrompt

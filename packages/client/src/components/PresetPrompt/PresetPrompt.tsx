@@ -14,7 +14,7 @@ const PresetPrompt: React.FC<PresetPromptProps> = ({
     <Card
       size="small"
       headStyle={{ fontSize: '14px' }}
-      title="Prompt suggestions"
+      title="查询样例"
     >
       <Space className="list" direction={'horizontal'}>
         {prompts.map((item) => (
