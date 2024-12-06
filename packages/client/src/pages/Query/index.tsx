@@ -17,12 +17,13 @@ const DatabasePage: React.FC = () => {
   const viewOptions = [
     { label: 'AVA', value: 'ava' },
     { label: 'VEGA', value: 'vega' },
+    { label: 'Neo4j', value: 'neo4j' },
   ];
 
   return (
     <PageContainer
       header={{
-        title: '查询生成',
+        title: '多方言查询生成',
       }}
       className="py-10"
     >

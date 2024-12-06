@@ -7,28 +7,23 @@ export default defineConfig({
   initialState: {},
   request: {},
   layout: {
-    title: 'ChatBI',
+    title: '数据库多方言查询系统',
   },
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      redirect: '/query',
     },
     {
-      name: '首页',
-      path: '/home',
-      component: './Home',
+      name: '多方言查询生成',
+      path: '/query',
+      component: './Query',
     },
     {
       name: '数据库配置',
       path: '/data-source',
       component: './DataSource',
-    },
-    {
-      name: '查询生成',
-      path: '/query',
-      component: './Query',
-    },
+    }
   ],
   npmClient: 'pnpm',
 

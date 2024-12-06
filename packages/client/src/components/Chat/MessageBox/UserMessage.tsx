@@ -10,8 +10,8 @@ interface UserMessageProps {
 const UserMessage: React.FC<UserMessageProps> = ({ message }) => {
   return (
     <Row className="h-auto">
-      <Col span={4}>&nbsp;</Col>
-      <Col span={18}>
+      <Col span={1}>&nbsp;</Col>
+      <Col span={20}>
         <div className="bg-blue-100 px-2 py-4 mx-2 flex items-center justify-start b-rounded">
           {/* <MarkdownView content={message.content} /> */}
           <div className="text-black">{message.content}</div>

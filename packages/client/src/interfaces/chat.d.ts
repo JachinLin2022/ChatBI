@@ -20,7 +20,7 @@ declare namespace Chat {
     role: string;
     content: string;
     data?: Record<string, any>[];
-    autoVizType?: 'ava' | 'vega';
+    autoVizType?: 'ava' | 'vega' | 'neo4j';
   }
 
   interface IChatgptResponse {

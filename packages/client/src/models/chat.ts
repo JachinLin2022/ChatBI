@@ -44,6 +44,16 @@ const useChat = () => {
           newMessages.push(botMsg);
 
           chatStore.addMessage(newMessages);
+        } else if (chatStore.autoVizType === 'neo4j') {
+          const botMsg: Chat.IMessage = {
+            role: 'system',
+            content: 'Auto Visualize By Neo4j',
+            data: data.table.data,
+            autoVizType: 'neo4j',
+          };
+          newMessages.push(botMsg);
+
+          chatStore.addMessage(newMessages);
         } else {
           chatStore.addMessage(newMessages);
           try {
