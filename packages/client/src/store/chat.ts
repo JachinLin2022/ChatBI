@@ -8,7 +8,6 @@ type ChatStore = {
   visualizing: boolean;
   autoVisualize: boolean;
   autoVizType: string;
-  multiRoundChat: boolean; // 新增状态
 
   setMessages: (messages: Chat.IMessage[]) => void;
   setPrompt: (prompt: string) => void;
@@ -18,7 +17,6 @@ type ChatStore = {
   setVisualizing: (visualizing: boolean) => void;
   setAutoVizType: (autoVizType: string) => void;
   addMessage: (messages: Chat.IMessage[]) => void;
-  setMultiRoundChat: (multiRoundChat: boolean) => void; // 新增方法
 };
 
 const useChatDbStore = create(
@@ -26,11 +24,10 @@ const useChatDbStore = create(
     (set) => ({
       prompt: '',
       messages: [],
-      chatType: 'chat',
+      chatType: 'MySQL',
       autoVisualize: true,
       visualizing: false,
       autoVizType: 'ava',
-      multiRoundChat: false, // 初始值为 false
 
       setAutoVizType: (autoVizType: string) => {
         set(() => {
@@ -88,7 +85,6 @@ const useChatDbStore = create(
           };
         });
       },
-      setMultiRoundChat: (multiRoundChat: boolean) => set({ multiRoundChat }), // 新增方法
     }),
     {
       name: 'chat-db-storage',

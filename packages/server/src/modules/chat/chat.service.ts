@@ -78,20 +78,16 @@ export class ChatService {
         success: true,
         table,
         content: `
-Question:
-
-> ${payload.text}
-
-Assumptions:
+【用户问题】:
 \`\`\`
-${result.assumptions}
+${payload.text}
 \`\`\`
 
-Execute SQL:
-\`\`\`sql
+【生成的数据库查询语句】:
+\`\`\`
 ${result.query}
 \`\`\`
-        `,
+`,
       };
     } catch (e) {
       this.logger.error(e);

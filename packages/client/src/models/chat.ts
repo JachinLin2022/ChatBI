@@ -44,12 +44,12 @@ const useChat = () => {
           newMessages.push(botMsg);
 
           chatStore.addMessage(newMessages);
-        } else if (chatStore.autoVizType === 'neo4j') {
+        } else if (chatStore.autoVizType === 'vis') {
           const botMsg: Chat.IMessage = {
             role: 'system',
             content: 'Auto Visualize By Neo4j',
             data: data.table.data,
-            autoVizType: 'neo4j',
+            autoVizType: 'vis',
           };
           newMessages.push(botMsg);
 
@@ -65,17 +65,26 @@ const useChat = () => {
             console.error(e);
           }
         }
+      } else {
+        const errMessage = [{ role: 'assistant', content: data.content }];
+        chatStore.addMessage(errMessage);
       }
     },
   });
 
   const sendChat = async ({
     message: msg,
-    chatType: type = 'chat',
+    chatType: type = 'MySQL',
   }: {
     message: string;
     chatType?: string;
   }) => {
+    chatStore.clearMessages();
+    if (type == 'MySQL' || type == 'PostgreSQL') {
+      chatStore.setAutoVizType('ava');
+    } else {
+      chatStore.setAutoVizType('vis');
+    }
     const newMessages = [...messages, { role: 'user', content: msg }];
     chatStore.setMessages(newMessages);
 

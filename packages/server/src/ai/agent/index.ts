@@ -6,6 +6,7 @@ import { openAI, type OpenAI } from '../api/openai.js';
 import {
   generateSqlPrompt,
   generateVegaPrompt,
+  generateIntentPrompt
 } from '../../modules/chat/prompt-generator.js';
 import { DatabaseService } from '../../modules/database/database.service.js';
 import {
@@ -89,6 +90,23 @@ export class AiAgent {
     question: string,
     conversationId: string,
   ): Promise<Chat.Answer> {
+
+    // 意图识别
+    const intentPrompt = generateIntentPrompt(question);
+    this.logger.debug(`Intent Prompt:\n${intentPrompt}`);
+    const intentResponse = await this.aiAgent.sendMessage(intentPrompt);
+    this.logger.debug(`Intent prompt response:\n${intentResponse.text}`);
+
+    if (intentResponse.text.indexOf('查询相关') < 0) {
+      return {
+        query: '',
+        success: false,
+        error: `该问题为查询无关问题，请重新输入！
+        `,
+      };
+    }
+    
+
     // 1. Get all table schemas for generate context prompt
     const tableSchemas = await this.databaseService.getAllTableSchemas();
     const dbType = await this.databaseService.getDbType();

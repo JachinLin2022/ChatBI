@@ -15,7 +15,7 @@ const BotMessage: React.FC<BotMessageProps> = ({ message }) => {
   const containerRef = useRef(null);
 
   function renderMessage() {
-    console.log(message);
+
     if (message.autoVizType === 'ava') {
       return <AvaAdvisor data={message.data ?? []} />;
     } else if (message.autoVizType === 'vega') {
@@ -33,7 +33,7 @@ const BotMessage: React.FC<BotMessageProps> = ({ message }) => {
           </div>
         );
       }
-    } else if (message.autoVizType === 'neo4j') {
+    } else if (message.autoVizType === 'vis') {
       useEffect(() => {
         if (containerRef.current) {
           // 更加复杂的Mock 数据
@@ -84,10 +84,16 @@ const BotMessage: React.FC<BotMessageProps> = ({ message }) => {
       return (
         <div className="px-2 py-4 mx-2" ref={containerRef} style={{ height: '500px' }}></div>
       );
-    } else {
+    } else if (message.content.indexOf('数据库查询语句') >= 0) {
       return (
         <div className="px-2 py-4 mx-2">
           <MarkdownView content={message.content} />
+        </div>
+      );
+    } else {
+      return (
+        <div className="px-2 py-4 mx-2">
+          {message.content}
         </div>
       );
     }
@@ -97,12 +103,22 @@ const BotMessage: React.FC<BotMessageProps> = ({ message }) => {
     <Row className="h-auto">
       <Col span={1}>
         {/* <Avatar size="large" icon={<RobotOutlined />} /> */}
-        <Avatar size="large" src="https://img.alicdn.com/imgextra/i2/O1CN01Qta2HJ20Hu4u7BbWM_!!6000000006825-2-tps-1024-1024.png" />
+        <Avatar size={
+                message.content.indexOf('数据库查询语句') >= 0 || message.autoVizType
+                  ? 60
+                  : 50
+            }  src={
+            message.content.indexOf('数据库查询语句') >= 0 || message.autoVizType
+              ? "./robot.svg"
+              : "https://img.alicdn.com/imgextra/i2/O1CN01Qta2HJ20Hu4u7BbWM_!!6000000006825-2-tps-1024-1024.png"
+          } style={{
+            marginLeft: message.content.indexOf('数据库查询语句') >= 0 || message.autoVizType ? '0' : '5px',
+          }} />
       </Col>
       <Col span={20}>
         <div className="bg-gray-200 mx-2">{renderMessage()}</div>
       </Col>
-      <Col span={4}>&nbsp;</Col>
+      <Col span={2}>&nbsp;</Col>
     </Row>
   );
 };

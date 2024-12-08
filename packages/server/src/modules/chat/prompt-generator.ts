@@ -1,3 +1,23 @@
+export function generateIntentPrompt(
+  question: string,
+) {
+  const prompt = `你是一名意图识别专家，请对【用户问题】进行意图识别，具体类别如下：
+  1. 查询相关：用户的问题涉及对数据库进行查询。
+  2. 查询无关：用户的问题不涉及数据库查询。
+  请在分析用户输入后明确指出用户的提问属于哪一类别，请不要输出分类的解释或者依据。
+  【样例1】
+  用户问题：如何找到过去一个月内所有销售额超过1000元的订单？
+  分类结果：查询相关
+  【样例2】
+  用户问题：公司将在哪里举办今年的年会？
+  分类结果：查询无关
+  【需要分类的用户问题】
+  用户问题：${question}
+  `
+  return prompt;
+}
+
+
 export function generateSqlPrompt(
   dataSourceType: string,
   tableSchemas: Database.TableSchema[],

@@ -18,8 +18,8 @@ const UserMessage: React.FC<UserMessageProps> = ({ message }) => {
         </div>
       </Col>
       <Col span={2}>
-        <Avatar size="large" icon={<UserOutlined />} />
-        {/* <Avatar size="large" src="https://img95.699pic.com/element/40203/4444.png_300.png!/fw/431/clip/0x300a0a0" /> */}
+        {/* <Avatar size="large" icon={<UserOutlined />} /> */}
+        <Avatar size={50} src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" />
       </Col>
     </Row>
   );

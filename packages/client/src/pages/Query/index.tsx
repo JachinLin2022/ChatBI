@@ -3,7 +3,6 @@ import { Checkbox, Radio, Select, Space } from 'antd';
 
 import ChatInput from '@/components/Chat/ChatInput/ChatInput';
 import MessageBox from '@/components/Chat/MessageBox/MessageBox';
-import PresetPrompt from '@/components/PresetPrompt/PresetPrompt';
 import useChat from '@/models/chat';
 import useChatDbStore from '@/store/chat';
 
@@ -12,11 +11,9 @@ const DatabasePage: React.FC = () => {
   const chatStore = useChatDbStore();
   const messages = useChatDbStore((state) => state.messages);
   const prompt = useChatDbStore((state) => state.prompt);
-  const prompts = ['Top10 product', 'Product price top10'];
-  console.log(messages);
   const viewOptions = [
     { label: 'AVA', value: 'ava' },
-    { label: 'VEGA', value: 'vega' },
+    // { label: 'VEGA', value: 'vega' },
     { label: 'Neo4j', value: 'neo4j' },
   ];
 
@@ -30,7 +27,7 @@ const DatabasePage: React.FC = () => {
       <Space direction={'horizontal'} className="mb-2">
         {/* chat type select */}
         <Space className="mr-10">
-          <span>查询模式 </span>
+          <span>数据库方言 </span>
           <Select
             className="min-w-30"
             value={chatStore.chatType}
@@ -38,13 +35,16 @@ const DatabasePage: React.FC = () => {
               chatStore.setChatType(value);
             }}
           >
-            <Select.Option value="chat">Chat</Select.Option>
+            <Select.Option value="MySQL">MySQL</Select.Option>
+            <Select.Option value="PostgreSQL">PostgreSQL</Select.Option>
+            <Select.Option value="Cypher">Cypher</Select.Option>
+            <Select.Option value="nGQL">nGQL</Select.Option>
             {/* <Select.Option value="command">Command</Select.Option> */}
           </Select>
         </Space>
 
         {/* enable auto visualization */}
-        <Checkbox
+        {/* <Checkbox
           checked={chatStore.autoVisualize}
           onChange={(e) => {
             chatStore.setAutoVisualize(e.target.checked);
@@ -60,27 +60,18 @@ const DatabasePage: React.FC = () => {
             chatStore.setAutoVizType(e.target.value);
           }}
           value={chatStore.autoVizType}
-        />
+        /> */}
 
-        {/* enable multi-round chat */}
-        <Checkbox
-          checked={chatStore.multiRoundChat}
-          onChange={(e) => {
-            chatStore.setMultiRoundChat(e.target.checked);
-          }}
-        >
-          多轮对话
-        </Checkbox>
       </Space>
 
-      <PresetPrompt
+      {/* <PresetPrompt
         prompts={prompts}
         onChange={(prompt) => {
           if (prompt) {
             chatStore.setPrompt(prompt);
           }
         }}
-      />
+      /> */}
 
       <MessageBox messages={messages} className="m-2" />
       <ChatInput
